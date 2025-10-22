@@ -1,0 +1,22 @@
+# Py
+*.pyc
+
+# Node
+node_modules/
+dist/
+
+# Django:
+*.log
+db.sqlite3
+
+# Environment
+.venv/
+.env
+
+# IDE
+.idea/
+.vscode/
+
+# Cache
+__pycache__/
+.pytest_cache/
