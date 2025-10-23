@@ -13,6 +13,7 @@ class Game(models.Model):
         board = json.loads(str(self.board))
         if board[position] or self.winner:
             return False
+
         if 0 <= position < 9:
             board[position] = self.current_player
             self.board = json.dumps(board)
@@ -25,15 +26,17 @@ class Game(models.Model):
     def _check_winner(self):
         board = json.loads(self.board)
         win_combinations = [
-            [0, 1, 2], [3, 4, 5], [6, 7, 8],
-            [0, 3, 6], [1, 4, 7], [2, 5, 8],
-            [0, 4, 8], [2, 5, 6]
+            [0, 1, 2], [3, 4, 5], [6, 7, 8],  # строки
+            [0, 3, 6], [1, 4, 7], [2, 5, 8],  # столбцы
+            [0, 4, 8], [2, 4, 6]              # диагонали
         ]
+
         for cell_1, cell_2, cell_3 in win_combinations:
-            if board[cell_1] == board[cell_2] == board[cell_3] and board[
-                    cell_3]:
+            if (board[cell_1] == board[cell_2] == board[cell_3]
+                    and board[cell_3]):
                 self.winner = board[cell_3]
                 return
+
         if all(board):
             self.winner = 'D'  # - Draw (Ничья)
         return

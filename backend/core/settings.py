@@ -14,9 +14,12 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
+    'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.staticfiles',
+
     'game.apps.GameConfig',
+
     'rest_framework',
     'corsheaders',
 ]

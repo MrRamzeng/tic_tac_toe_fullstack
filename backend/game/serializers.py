@@ -1,6 +1,9 @@
+import json
+
 from rest_framework import serializers
 
 from .models import Game
+
 
 class GameSerializer(serializers.ModelSerializer):
     board = serializers.SerializerMethodField()
@@ -10,4 +13,4 @@ class GameSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
     def get_board(self, game):
-        return game.board
+        return json.loads(game.board)
